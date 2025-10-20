@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int missingMultiple(vector<int>& nums, int k) {
+        unordered_set<int> set; // store multipliers x/k for x divisible by k
+        for (int x : nums) {
+            if (x % k == 0) set.insert(x / k);
+        }
+
+        int t = 1;
+        while (true) {
+            if (set.find(t) == set.end()) {
+                return t * k;
+            }
+            ++t;
+        }
+        // unreachable
+        return k;
+    }
+};
